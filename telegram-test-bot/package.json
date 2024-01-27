@@ -1,0 +1,16 @@
+{
+  "name": "telegram-test-bot",
+  "version": "1.0.0",
+  "description": "myBot",
+  "main": "bot.js",
+  "scripts": {
+    "start": "nodemon bot.js"
+  },
+  "author": "SaiyanDionysus",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.2",
+    "grammy": "^1.20.3",
+    "nodemon": "^3.0.3"
+  }
+}
