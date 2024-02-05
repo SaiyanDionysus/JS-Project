@@ -50,4 +50,41 @@ app.get("/users", async (req, res) => {
             message:err,
         })
     }
-})
+});
+
+app.get("/user/:id", async (req, res) => {
+    try {
+        const {id} = req.params
+        const data = await connection.promise().query(
+            `SELECT * from users where id = ?`, [id]
+        );
+        res.status(200).json({
+            user: data[0],
+        });
+    } catch (err) {
+        res.status(500).json({
+            message: err,
+        });
+    }
+});
+
+app.patch("/user/:id", async (req, res) => {
+    try {
+        const {id} = req.params;
+        const {name, address, country} = req.body;
+        const update = await connection
+            .promise()
+            .query(
+                `UPDATE users set name = ?, address = ?, country = ?, where id = ?`,
+                [name, address, country, id]
+            );
+            res.status(200).json({
+                message: "updated!",
+            });
+    } catch (err) {
+        res.status(500).json({
+            message: err,
+        });
+    }
+});
+
